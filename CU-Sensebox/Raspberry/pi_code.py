@@ -9,11 +9,11 @@ def on_recv(payload):
 lora = LoRa(0, 17, 2, freq=868, modem_config=ModemConfig.Bw125Cr45Sf128, tx_power=14, acks=True)
 lora.on_recv = on_recv
 buffer = []
-buffer.append(msg)
+#buffer.append(msg)
 
 while True:
-    if msg != 0
-    print(msg)
-    msg = 0
+#    if msg != 0
+    print("1")
+
 
 lora.close()
