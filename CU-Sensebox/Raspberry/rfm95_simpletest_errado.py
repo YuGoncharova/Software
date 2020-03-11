@@ -1,31 +1,18 @@
-#To install the library for the display, enter the following into the terminal:
 
-#sudo pip3 install adafruit-circuitpython-ssd1306
-
-#You'll also need to install the framebuf module in order to write to the display.
-
-#sudo pip3 install adafruit-circuitpython-framebuf
-
-#To install the library for the RFM9x Module, enter the following into the terminal:
-
-#sudo pip3 install adafruit-circuitpython-rfm9x
-import time
-import busio
-from digitalio import DigitalInOut, Direction, Pull
 import board
-# Import the SSD1306 module.
-import adafruit_ssd1306
-# Import the RFM9x radio module.
+import busio
+import digitalio
+
 import adafruit_rfm9x
+
 # Define radio parameters.
 RADIO_FREQ_MHZ = 868
 
+# Define pins connected to the chip, use these if wiring up the breakout according to the guide:
+CS = digitalio.DigitalInOut(board.D5)       #nao sei se aqui realmente é o D5
+RESET = digitalio.DigitalInOut(board.D6)
 
-# Create the I2C interface.
-i2c = busio.I2C(board.SCL, board.SDA)
-# Configure RFM9x LoRa Radio
-CS = DigitalInOut(board.CE1)
-RESET = DigitalInOut(board.RESET)   # tinha D25
+
 # Initialize SPI bus.
 spi = busio.SPI(board.SCK, MOSI=board.MOSI, MISO=board.MISO)
 
