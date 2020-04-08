@@ -11,9 +11,10 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.content.Intent;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class Main2Activity extends AppCompatActivity {
-
+    database_helper myDb;
     private EditText Name;
     private EditText Password;
     private Button Login;
@@ -24,7 +25,7 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-
+        myDb = new database_helper(this);
         Name = (EditText)findViewById(R.id.etName);
         Password= (EditText)findViewById(R.id.etPassword);
       //  Info = (TextView)findViewId(R.id.tvInfo);
@@ -36,7 +37,7 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onClick(View view){
               validate(Name.getText().toString(),Password.getText().toString());
-
+              add_to_Database();
             }
         });
 
@@ -58,5 +59,14 @@ public class Main2Activity extends AppCompatActivity {
             }
         }
 
+    }
+
+    public void add_to_Database (){
+        boolean isinserted = myDb.insertData( Name.getText().toString(),
+                Password.getText().toString(), 7 );
+        if(isinserted == true)
+            Toast.makeText(Main2Activity.this, "Data inserted", Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(Main2Activity.this, "Data  not inserted", Toast.LENGTH_SHORT).show();
     }
 }
