@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MeasuredData"></activity>
+        <activity android:name=".four"></activity>
+        <activity android:name=".three" />
+        <activity android:name=".two" />
+        <activity android:name=".one" />
+        <activity android:name=".ConnectingSensors" />
+        <activity android:name=".MeasuredData" />
         <activity android:name=".DadosMedidos" />
         <activity android:name=".AfterLogIn" />
         <activity android:name=".Main2Activity" />

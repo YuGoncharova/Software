@@ -9,6 +9,8 @@ import android.widget.Button;
 
 public class AfterLogIn extends AppCompatActivity {
     private Button button4;
+    private Button button2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,9 +23,20 @@ public class AfterLogIn extends AppCompatActivity {
                 openMeasuredData();
             }
         });
+        button2 = (Button) findViewById(R.id.button2);
+        button2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openConnectingSensors();
+            }
+        });
     }
     public void openMeasuredData(){
         Intent intent = new Intent(this, MeasuredData.class);
+        startActivity(intent);
+    }
+    public void openConnectingSensors(){
+        Intent intent = new Intent(this, ConnectingSensors.class);
         startActivity(intent);
     }
 }
