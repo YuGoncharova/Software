@@ -2,6 +2,7 @@ package com.example.senseapp;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -44,6 +45,9 @@ public class database_helper extends SQLiteOpenHelper {
 
         db.execSQL( " create table " + TABLE_2 + "(ID Integer Primary key AUTOINCREMENT, Tempe double, CO2 double, CO double," +
                 "Hum double, Lum double, pressure double)" ); /*cria uma tabela*/
+        //esta tabela vai conter ultimos x valores lidos nos sensores
+        db.execSQL( " create table " + TABLE_2 + "(ID Integer Primary key AUTOINCREMENT, Tempe double, CO2 double, CO double," +
+                "Hum double, Lum double, pressure double)" ); /*cria uma tabela*/
     }
 
     @Override
@@ -65,5 +69,12 @@ public class database_helper extends SQLiteOpenHelper {
         else
             return true;
     }
+
+    public Cursor getAllData(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from "+ TABLE_1, null);
+        return res;
+    }
+
 }
-/*feitas em "MainActivity*/
+/*alteraçõesfeitas em "Main2Activity*/

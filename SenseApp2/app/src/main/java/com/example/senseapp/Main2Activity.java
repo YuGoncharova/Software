@@ -1,8 +1,10 @@
 package com.example.senseapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,7 +39,8 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onClick(View view){
               validate(Name.getText().toString(),Password.getText().toString());
-              add_to_Database();
+              //add_to_Database();
+                //viewAll();
             }
         });
 
@@ -69,4 +72,46 @@ public class Main2Activity extends AppCompatActivity {
         else
             Toast.makeText(Main2Activity.this, "Data  not inserted", Toast.LENGTH_SHORT).show();
     }
+
+    public void viewAll() {
+        //button14.setOnClickListener(
+        // new View.OnClickListener() {
+        //        @Override
+        //   public void onClick(View v) {
+        Cursor res = myDb.getAllData();
+        if (res.getCount() == 0) {
+            //show message
+            ShowMessage("Error", "No data found");
+            return;
+        }
+
+        StringBuffer buffer = new StringBuffer();
+        while (res.moveToNext()) {
+            buffer.append("ID:"+ res.getString(0)+ "\n\n" );
+            buffer.append("Name:"+ res.getString(1)+ "\n" );
+            buffer.append("Password:"+ res.getString(2)+ "\n" );
+            buffer.append("Temp_Threshold:"+ res.getString(3)+ "\n" );
+            buffer.append("Lum_Threshold:"+ res.getString(4)+ "\n" );
+            buffer.append("Hum_Threshold:"+ res.getString(5)+ "\n" );
+        }
+        ShowMessage("Data", buffer.toString());
+        //}
+        //}
+        //);
+
+        //buffer.append("ID:"+ res.getString(0)+ "\n" );
+    /*
+
+        ShowMessage("Data", buffer.toString());
+
+    */
+    }
+    public void ShowMessage(String title, String Message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(Message);
+        builder.show();
+    }
+
 }
