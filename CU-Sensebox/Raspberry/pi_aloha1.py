@@ -27,7 +27,7 @@ while True:
         if ack = 1:
             ack = 0
             break
-        rt = random.random() #returns a random foating point number from 0 to 1
+        rt = random.random() #returns a random floating point number from 0 to 1
         k = #range that we want our random number to be choosen from
         rt1 = k*rt
         time.sleep(rt1)
