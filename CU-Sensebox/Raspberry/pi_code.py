@@ -7,6 +7,7 @@ def on_recv(payload):
     
 #The selected SPI channel is 0, The selected interrupt pin is GPIO17
 lora = LoRa(0, 17, 2, freq=868, modem_config=ModemConfig.Bw125Cr45Sf128, tx_power=14, acks=True)
+
 lora.on_recv = on_recv
 
 while True:
